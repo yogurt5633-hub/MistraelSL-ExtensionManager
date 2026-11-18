@@ -1532,3 +1532,57 @@
         min-height: 38px;
     }
 }
+
+/* === FIX: Запрет наезда текста в карточках и шапке === */
+.sem-hero,
+.sem-title-row,
+.sem-filter-bar,
+.sem-section-header {
+    flex-wrap: wrap !important;
+    height: auto !important;
+}
+.sem-brand-copy h2,
+.sem-brand-copy p,
+.sem-section-title,
+.sem-section-hint {
+    white-space: normal !important;
+    line-height: 1.35 !important;
+    overflow-wrap: anywhere !important;
+}
+.sem-section-native-container .extension_block.sem-card {
+    display: grid !important;
+    grid-template-columns: auto auto minmax(0, 1fr) auto !important;
+    height: auto !important;
+    min-height: 52px !important;
+    padding: 8px 10px !important;
+    gap: 8px !important;
+    align-items: center !important;
+}
+.sem-card .extension_text_block,
+.sem-card .extension_enabled,
+.sem-card .extension_disabled,
+.sem-card .extension_missing {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: baseline !important;
+    gap: 4px 8px !important;
+    line-height: 1.35 !important;
+    min-width: 0 !important;
+}
+.sem-card .extension_name,
+.sem-card .extension_author,
+.sem-card .extension_version {
+    white-space: normal !important;
+    max-width: 100% !important;
+    line-height: 1.35 !important;
+    overflow-wrap: anywhere !important;
+}
+@media (max-width: 640px) {
+    .sem-section-native-container .extension_block.sem-card {
+        grid-template-columns: auto auto minmax(0, 1fr) !important;
+    }
+    .sem-card .extension_actions {
+        grid-column: 1 / -1 !important;
+        justify-content: flex-end !important;
+    }
+}
