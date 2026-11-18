@@ -2604,3 +2604,24 @@ body.no-blur .popup.sem-dialog .popup-controls {
     .sem-profile-actions { grid-column: 1; grid-row: 2; }
     .sem-filter.sem-quick-select { grid-column: 2; grid-row: 2; }
 }
+
+/* === FIX: Защита от наложения текста и перенос кнопок === */
+#extension_manager_popup .em-actions-row,
+#extension_manager_popup .em-toolbar,
+#extension_manager_popup [class*="actions"],
+#extension_manager_popup [class*="controls"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+}
+
+#extension_manager_popup button,
+#extension_manager_popup select,
+#extension_manager_popup .menu_button {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    flex: 1 1 auto !important;
+}
