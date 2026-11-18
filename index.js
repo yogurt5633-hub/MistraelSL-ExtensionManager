@@ -15,9 +15,9 @@ const MAX_PROFILE_BYTES = 2 * 1024 * 1024;
 const MAX_PROFILE_EXTENSIONS = 500;
 const APPEARANCE_STORAGE_KEY = `${STORAGE_PREFIX}:appearance`;
 const APPEARANCE_DEFAULTS = Object.freeze({
-    theme: 'native',
-    customColor: '#9f86ff',
-    glassOpacity: 74,
+    theme: 'nord',
+    customColor: '#9bbfbe',
+    glassOpacity: 92,
     fontScale: 100,
 });
 const APPEARANCE_THEMES = Object.freeze({
@@ -33,28 +33,28 @@ const APPEARANCE_THEMES = Object.freeze({
         danger: '#ff7587',
     },
     imperial: {
-        accent: '#d7b978', tint: '#211b14', secondary: 'rgba(167, 116, 63, 0.18)',
-        text: '#f6ecd9', muted: '#b9aa93', border: 'rgba(215, 185, 120, 0.34)',
+        accent: '#d7b978', tint: '#191919', secondary: 'transparent',
+        text: '#f2efea', muted: '#aba8a1', border: 'rgba(255, 255, 255, 0.10)',
         positive: '#7bd3a4', warning: '#e7b965', danger: '#e47a7a',
     },
     amethyst: {
-        accent: '#ad8bff', tint: '#191426', secondary: 'rgba(116, 82, 190, 0.18)',
-        text: '#f5f0ff', muted: '#aea2c4', border: 'rgba(173, 139, 255, 0.32)',
+        accent: '#b1a0dc', tint: '#18191b', secondary: 'transparent',
+        text: '#eef0ee', muted: '#a5a5ac', border: 'rgba(255, 255, 255, 0.10)',
         positive: '#75d6ad', warning: '#e8ba70', danger: '#ed7f91',
     },
     nord: {
-        accent: '#88c0d0', tint: '#18212b', secondary: 'rgba(94, 129, 172, 0.18)',
-        text: '#e5e9f0', muted: '#9aa8b9', border: '#445267',
+        accent: '#9bbfbe', tint: '#17191b', secondary: 'transparent',
+        text: '#eef0ee', muted: '#9ea6a4', border: 'rgba(255, 255, 255, 0.10)',
         positive: '#8fbc8f', warning: '#ebcb8b', danger: '#bf616a',
     },
     emerald: {
-        accent: '#70d6ad', tint: '#12211d', secondary: 'rgba(55, 143, 112, 0.18)',
-        text: '#e9f8f2', muted: '#98b6aa', border: 'rgba(112, 214, 173, 0.3)',
+        accent: '#90c6a7', tint: '#171a19', secondary: 'transparent',
+        text: '#eef0ee', muted: '#a0aaa4', border: 'rgba(255, 255, 255, 0.10)',
         positive: '#70d6ad', warning: '#e3ba71', danger: '#e77d88',
     },
     crimson: {
-        accent: '#e58a98', tint: '#251418', secondary: 'rgba(166, 75, 89, 0.18)',
-        text: '#fff0f2', muted: '#bea0a6', border: 'rgba(229, 138, 152, 0.32)',
+        accent: '#db9ba4', tint: '#1a1819', secondary: 'transparent',
+        text: '#f2edef', muted: '#aba3a6', border: 'rgba(255, 255, 255, 0.10)',
         positive: '#7dd1a5', warning: '#e5b86d', danger: '#ff7185',
     },
 });
@@ -66,7 +66,7 @@ const SELF_FOLDER = decodeURIComponent(new URL('.', import.meta.url).pathname)
 const I18N = {
     en: {
         title: 'Extension Manager',
-        subtitle: 'A calmer way to organize your SillyTavern extensions',
+        subtitle: 'Find, manage and back up extensions',
         installed: 'installed',
         active: 'active',
         updates: 'updates',
@@ -146,8 +146,8 @@ const I18N = {
         appearanceCrimson: 'Crimson',
         appearanceCustom: 'Custom',
         appearanceCustomColor: 'Custom accent color',
-        appearanceGlass: 'Glass visibility',
-        appearanceGlassHint: 'Higher values make the panel less transparent.',
+        appearanceGlass: 'Panel opacity',
+        appearanceGlassHint: 'Adjust the panel opacity.',
         appearanceFont: 'Text size',
         appearanceFontHint: 'Relative to the font size selected in SillyTavern.',
         appearanceReset: 'Reset appearance',
@@ -155,7 +155,7 @@ const I18N = {
     },
     ru: {
         title: 'Менеджер расширений',
-        subtitle: 'Спокойный и удобный порядок в расширениях SillyTavern',
+        subtitle: 'Поиск, управление и резервные копии',
         installed: 'установлено',
         active: 'включено',
         updates: 'обновлений',
@@ -235,8 +235,8 @@ const I18N = {
         appearanceCrimson: 'Багровая',
         appearanceCustom: 'Свой цвет',
         appearanceCustomColor: 'Свой цвет акцента',
-        appearanceGlass: 'Видимость стекла',
-        appearanceGlassHint: 'Чем выше значение, тем плотнее и заметнее панель.',
+        appearanceGlass: 'Плотность панели',
+        appearanceGlassHint: 'Настройте прозрачность панели.',
         appearanceFont: 'Размер текста',
         appearanceFontHint: 'Относительно размера шрифта, выбранного в SillyTavern.',
         appearanceReset: 'Сбросить оформление',
@@ -363,11 +363,11 @@ function applyAppearance(target, settings) {
     const selectedTheme = settings.theme === 'custom'
         ? {
             accent: settings.customColor,
-            tint: `color-mix(in srgb, ${settings.customColor} 17%, #171522)`,
-            secondary: `color-mix(in srgb, ${settings.customColor} 24%, transparent)`,
-            text: '#f4f1ff',
-            muted: '#aaa4b8',
-            border: `color-mix(in srgb, ${settings.customColor} 34%, rgba(255, 255, 255, 0.16))`,
+            tint: '#17191b',
+            secondary: 'transparent',
+            text: '#eef0ee',
+            muted: '#9ea6a4',
+            border: 'rgba(255, 255, 255, 0.10)',
             positive: '#73d9ad',
             warning: '#f2bd72',
             danger: '#ff7587',
